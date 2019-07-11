@@ -14,8 +14,14 @@ module.exports = {
         });
     },
 
-    updateOne: (whichTable, whichColumns, conditional, conValue, cb) => {
-        orm.updateOne(whichTable, whichColumns, conditional, conValue, (res) => {
+    updateOne: (devoured, id, cb) => {
+        orm.updateOne(devoured, id, (res) => {
+            cb(res);
+        });
+    },
+
+    delete: (id, cb) => {
+        orm.delete(id, (res) => {
             cb(res);
         });
     }

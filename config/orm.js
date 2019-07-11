@@ -23,15 +23,27 @@ module.exports = {
             cb(result);
         });
     },
-//*******TO DO************************ */
-    updateOne: (whichTable, whichColumns, conditional, conValue, cb) => {
-        let queryString = "UPDATE ?? SET (??) WHERE ?? = ?";
+    
+    updateOne: (devoured, id, cb) => {
+        //update burgers set devoured = ? where id =?
+        let queryString = "UPDATE burgers SET devoured=? WHERE id = ?";
 
-        connection.query(queryString, [whichTable, whichColumns, conditional, conValue], (err, result) => {
+        connection.query(queryString, [devoured, id], (err, result) => {
             if (err) {
                 throw err;
             };
             cb(result);
+        });
+    },
+
+    delete: (id, cb) => {
+        let queryString = "DELETE FROM burgers WHERE id=?";
+
+        connection.query(queryString, [id], (err, result) => {
+            if(err) {
+                throw err;
+            }
+            cb(result)
         });
     }
 };
