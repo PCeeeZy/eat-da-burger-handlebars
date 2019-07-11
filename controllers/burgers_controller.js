@@ -7,7 +7,11 @@ const burger = require('../models/burger');
 const router = express.Router();
 
 //ROUTES
-router.get('/', (req, res) => {
+router.get("/", function(req, res) {
+    res.redirect("/burgers");
+  });
+
+router.get('/burgers', (req, res) => {
     burger.all(data => {
         let hbsObj = {
             burgers: data
@@ -18,10 +22,9 @@ router.get('/', (req, res) => {
 });
 
 router.post('/api/burgers', (req, res) => {
-    let table = "burgers";
     let burgerName = req.body.burgerName;
 
-    burger.insertOne(table, "burger_name", burgerName, (result => {
+    burger.insertOne(burgerName, (result => {
         res.json({ id: result.insertId});
     }));
 });

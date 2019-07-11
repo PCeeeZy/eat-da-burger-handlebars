@@ -3,13 +3,13 @@ const orm = require('../config/orm');
 
 module.exports = {
     all: (cb) => {
-        orm.selectAll('burgers', (res) => {
+        orm.selectAll((res) => {
             cb(res);
         });
     },
 
-    insertOne: (whichTable, whichColumns, values, cb) => {
-        orm.insertOne(whichTable, whichColumns, values, (res) => {
+    insertOne: (values, cb) => {
+        orm.insertOne(values, (res) => {
             cb(res);
         });
     },

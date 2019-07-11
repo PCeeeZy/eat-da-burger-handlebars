@@ -1,12 +1,15 @@
 // Dependencies
 const mysql = require('mysql');
+require('dotenv').config();
+
+const key = require('./key');
 
 // Connection configuration
 const connection = mysql.createConnection({
     host: 'localhost',
     port: 3306,
     user: 'root',
-    password: '',
+    password: key.secret,
     database: 'burgers_db'
 });
 

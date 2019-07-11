@@ -2,10 +2,10 @@
 const connection = require('../config/connection');
 
 module.exports = {
-    selectAll: (whichTable, cb) => {
-        let queryString = "SELECT * FROM ??";
+    selectAll: (cb) => {
+        let queryString = "SELECT * FROM burgers";
 
-        connection.query(queryString, [whichTable], (err, result) => {
+        connection.query(queryString, (err, result) => {
             if(err) {
                 throw err;
             }
@@ -13,17 +13,17 @@ module.exports = {
         });
     },
 
-    insertOne: (whichTable, whichColumns, values, cb) => {
-        let queryString = "INSERT INTO ?? (??) VALUES (?)";
+    insertOne: (values, cb) => {
+        let queryString = "INSERT INTO burgers (burger_name) VALUES (?)";
 
-        connection.query(queryString, [whichTable, whichColumns, values], (err, result) => {
+        connection.query(queryString, [values], (err, result) => {
             if (err) {
                 throw err;
             }
             cb(result);
         });
     },
-    
+
     updateOne: (devoured, id, cb) => {
         //update burgers set devoured = ? where id =?
         let queryString = "UPDATE burgers SET devoured=? WHERE id = ?";
